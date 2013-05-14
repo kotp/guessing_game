@@ -1,5 +1,7 @@
 class GuessingGame
-  @@max_number = 1000
+  def initialize(max_number=1000)
+    @max_number = max_number
+  end
   def start
     puts "Welcome to my guessing game!"
     player_name
@@ -15,18 +17,18 @@ class GuessingGame
   
   def user_number
     print "Please pick a number from 1-1000: "
-    @number_guessed = gets.chomp.to_i
-    if @number_guessed > 0 && @number_guessed <= @@max_number
+    @number_guessed = gets.to_i
+    if @number_guessed > 0 && @number_guessed <= @max_number
       @number_guessed
     else
       print "Please pick a number from 1-1000: "
-      @number_guessed = gets.chomp.to_i
+      @number_guessed = gets.to_i
     end
   end
   
   def guess_number
     computer_guess = nil
-    range = (1..@@max_number)
+    range = (1..@max_number)
     while range.count != 1
       top = ((range.first + range.last)/2).round
       puts "Is your number greater than #{top}?(yes/no)"
